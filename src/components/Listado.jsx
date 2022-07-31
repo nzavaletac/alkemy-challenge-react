@@ -1,20 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import swAlert from "@sweetalert/with-react";
 
 const Listado = () => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   const [moviesList, setMoviesList] = useState([]);
 
   useEffect(() => {
     const endPoint =
       "https://api.themoviedb.org/3/discover/movie?api_key=660f0ca35415ef05ecdf4390fab6ac9d&language=es-ES&sort_by=popularity.desc";
-    axios.get(endPoint).then((response) => {
-      const apiData = response.data;
-      setMoviesList(apiData.results);
-    });
+    axios
+      .get(endPoint)
+      .then((response) => {
+        const apiData = response.data;
+        setMoviesList(apiData.results);
+      })
+      .catch((e) => {
+        swAlert(<h2>Hubo errores, intenta más tarde.</h2>);
+      });
   }, [setMoviesList]);
+  console.log(moviesList);
 
   return (
     <>
@@ -34,7 +41,10 @@ const Listado = () => {
                   <p className="card-text">
                     {oneMovie.overview.substring(0, 100)}...
                   </p>
-                  <Link to="/" className="btn btn-primary">
+                  <Link
+                    to={`/detalle?movieID=${oneMovie.id}`}
+                    className="btn btn-primary"
+                  >
                     View Detail
                   </Link>
                 </div>

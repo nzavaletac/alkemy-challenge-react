@@ -38,11 +38,11 @@ const Login = () => {
       .then((res) => {
         swAlert(<h2>Perfecto, Igresaste correctamente.</h2>);
         const token = res.data.token;
-        localStorage.setItem("token", token);
+        sessionStorage.setItem("token", token);
         navigate("/listado");
       });
   };
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   return (
     <>
