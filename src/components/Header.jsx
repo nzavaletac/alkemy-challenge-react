@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Buscador from "./Buscador";
 
 const Header = () => {
   return (
@@ -33,6 +34,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
+          <Buscador />
         </div>
       </nav>
     </header>

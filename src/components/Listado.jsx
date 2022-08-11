@@ -21,7 +21,7 @@ const Listado = () => {
         swAlert(<h2>Hubo errores, intenta más tarde.</h2>);
       });
   }, [setMoviesList]);
-  console.log(moviesList);
+  // console.log(moviesList);
 
   return (
     <>
