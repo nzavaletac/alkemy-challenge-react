@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import swAlert from "@sweetalert/with-react";
 
-const Listado = () => {
+const Listado = ({ addOrRemoveFromFavs }) => {
   const token = sessionStorage.getItem("token");
 
   const [moviesList, setMoviesList] = useState([]);
@@ -21,7 +21,6 @@ const Listado = () => {
         swAlert(<h2>Hubo errores, intenta más tarde.</h2>);
       });
   }, [setMoviesList]);
-  // console.log(moviesList);
 
   return (
     <>
@@ -36,6 +35,13 @@ const Listado = () => {
                   className="card-img-top"
                   alt="..."
                 />
+                <button
+                  className="favorite-btn"
+                  onClick={addOrRemoveFromFavs}
+                  data-movie-id={oneMovie.id}
+                >
+                  🖤
+                </button>
                 <div className="card-body">
                   <h5 className="card-title">{oneMovie.title}</h5>
                   <p className="card-text">

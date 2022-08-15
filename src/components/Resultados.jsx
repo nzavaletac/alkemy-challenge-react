@@ -2,11 +2,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import swAlert from "@sweetalert/with-react";
 
-const Resultados = () => {
+const Resultados = ({ addOrRemoveFromFavs }) => {
   let query = new URLSearchParams(window.location.search);
   let keyword = query.get("keyword");
+
+  
 
   const [moviesResults, setMoviesResults] = useState([]);
 
